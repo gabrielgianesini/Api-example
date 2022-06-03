@@ -1,7 +1,7 @@
 import { TokenAdapter } from '../../adapters/token-adapter'
 import { UserRepository } from '../../repositories/user-repositories'
 
-interface TokenUserUseCaseRequest{
+interface CreateTokenUserUseCaseRequest{
   username: string
   password: string
 }
@@ -12,7 +12,7 @@ export class CreateTokenUserUseCase{
     private tokenAdapter: TokenAdapter
   ){}
 
-  async verifyUser({ username, password}: TokenUserUseCaseRequest){
+  async verifyUser({ username, password}: CreateTokenUserUseCaseRequest){
 
     if(!username){
       throw new Error('Username is required')

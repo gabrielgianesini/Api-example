@@ -1,5 +1,6 @@
-import "dotenv/config";
-import express, { Express, NextFunction, Request, Response } from "express";
+import dotenv from 'dotenv'
+dotenv.config({ path: './.env.development.local' })
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import routes from "./routes";
 
