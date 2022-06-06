@@ -13,7 +13,7 @@ export class ChangeProductController {
     const changeProductUseCase = new ChangeProductUseCase(prismaProductRepository)
     try{
       await changeProductUseCase.execute({ id, name, price })
-      return response.status(200).send()
+      return response.status(201).send()
     }catch(err) {
       return response.status(400).send(err)
     }

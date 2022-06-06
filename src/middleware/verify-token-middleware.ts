@@ -8,7 +8,8 @@ interface VerifyTokenMiddlewareRequest{
 
 export class VerifyTokenMiddleware {
   async handle(request: Request, response: Response,next: NextFunction){
-    const { authToken } = request.headers
+    const { authorization: authToken} = request.headers
+    console.log(authToken)
     const jwtTokenAdapter = new JwtTokenAdapter()
     const verifyTokenUseCase = new VerifyTokenUseCase(jwtTokenAdapter)
 

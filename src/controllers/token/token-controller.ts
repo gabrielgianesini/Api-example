@@ -18,7 +18,7 @@ export class TokenUserController{
     try {
       const result = await createTokenUserUseCase.verifyUser({ username, password })
       if(result){
-        const token = createTokenUserUseCase.getToken(username)
+        const token = await createTokenUserUseCase.getToken(username)
         return response.status(200).send({token: token})
       }
       return response.status(401).send('User or password invalid')
