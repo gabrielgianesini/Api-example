@@ -1,0 +1,287 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de exemplo",
+    "description": "Essa API tem como objetivo servir de exemplo para proximas API's",
+    "contact": {
+      "email": "gabrielfgianesini@gmail.com"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3010/v1",
+      "description": "API de teste"
+    },
+    {
+      "url": "http://HOSTPROD:3010/v1",
+      "description": "API de Produção"
+    }
+  ],
+  "paths": {
+    "/user":{
+      "post": {
+        "summary": "Cadastro de Usuario",
+        "description": "Essa rota é responsavel por cadastrar usuarios",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "username": "usuario",
+                    "password": "senha"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": { 
+            "description": "User already exist"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/login":{
+      "post": {
+        "summary": "Geração de Token",
+        "description": "Essa rota é responsavel por gerar um novo token",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "username": "usuario",
+                    "password": "senha"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": { 
+            "description": "User or password invalid"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Token"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "summary": "Cadastro de Produtos",
+        "description": "Essa rota é responsavel por cadastrar produtos",
+        "tags": ["Products"],
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProducts"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Batata",
+                    "price": 5.99
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": { 
+            "description": "Check the token sent"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Alteração de Produtos",
+        "description": "Essa rota é responsavel por Alteração produto",
+        "tags": ["Products"],
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Products"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "id": "2e59db55-4b5e-4e6c-946d-2b40855b33ac",
+                    "name": "Batata",
+                    "price": 5.99
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": { 
+            "description": "Record to update not found"
+          },
+          "201": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/products/{name}": {
+      "get": {
+        "summary": "Cadastro de Produtos",
+        "description": "Essa rota é responsavel por cadastrar produtos",
+        "tags": ["Products"],
+        "security": [{"bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Nome do produto para busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "delete": {
+        "summary": "Deletar Produtos",
+        "description": "Essa rota é responsavel por deleta produto",
+        "tags": ["Products"],
+        "security": [{"bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do produto para busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": { 
+            "description": "Record to delete does not exist"
+          },
+          "201": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateProducts": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "Products": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "Token": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteProducts":{
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

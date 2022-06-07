@@ -8,14 +8,14 @@ import { DeleteProductUseCase } from '../../use-cases/product/delete-product-use
 
 export class DeleteProductController {
   async handle(request: Request , response: Response){
-    const { id } = request.body
+    const { id } = request.params;
     const prismaProductRepository = new PrismaProductRepository()
     const deleteProductUseCase = new DeleteProductUseCase(prismaProductRepository)
     try{
       const DeleteProduct = await deleteProductUseCase.execute({ id })
       return response.status(201).send()
     }catch(err) {
-      return response.status(400).send(err)
+      return response.status(400).send("Record to delete does not exist")
     }
   }
 }

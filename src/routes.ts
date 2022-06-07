@@ -10,10 +10,10 @@ import { VerifyTokenMiddleware } from './middleware/verify-token-middleware'
 const routes = Router()
 
 routes.post('/user', new CreateUserController().handle)
-routes.post('/token', new TokenUserController().handle)
+routes.post('/login', new TokenUserController().handle)
 routes.post('/products',  new VerifyTokenMiddleware().handle, new CreateProductController().handle)
 routes.put('/products', new VerifyTokenMiddleware().handle, new ChangeProductController().handle)
 routes.get('/products/:name', new VerifyTokenMiddleware().handle, new ConsultProductController().handle)
-routes.delete('/products', new VerifyTokenMiddleware().handle, new DeleteProductController().handle)
+routes.delete('/products/:id', new VerifyTokenMiddleware().handle, new DeleteProductController().handle)
 
 export default routes

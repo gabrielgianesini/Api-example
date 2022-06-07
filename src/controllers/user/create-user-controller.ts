@@ -13,8 +13,8 @@ export class CreateUserController {
     try {
       await createUserUsecase.execute({username, password})
       return response.status(200).send()
-    } catch (err) {
-      return response.status(400).send(err)
+    } catch (err){
+      return response.status(400).send('User already exist')
     }
   }
 }
