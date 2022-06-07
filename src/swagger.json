@@ -19,7 +19,7 @@
     }
   ],
   "paths": {
-    "/user":{
+    "/user": {
       "post": {
         "summary": "Cadastro de Usuario",
         "description": "Essa rota é responsavel por cadastrar usuarios",
@@ -42,7 +42,7 @@
           }
         },
         "responses": {
-          "400": { 
+          "400": {
             "description": "User already exist"
           },
           "200": {
@@ -51,7 +51,7 @@
         }
       }
     },
-    "/login":{
+    "/login": {
       "post": {
         "summary": "Geração de Token",
         "description": "Essa rota é responsavel por gerar um novo token",
@@ -74,7 +74,7 @@
           }
         },
         "responses": {
-          "401": { 
+          "401": {
             "description": "User or password invalid"
           },
           "200": {
@@ -97,7 +97,7 @@
         "summary": "Cadastro de Produtos",
         "description": "Essa rota é responsavel por cadastrar produtos",
         "tags": ["Products"],
-        "security": [{"bearerAuth": []}],
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -116,7 +116,7 @@
           }
         },
         "responses": {
-          "400": { 
+          "400": {
             "description": "Check the token sent"
           },
           "200": {
@@ -137,7 +137,7 @@
         "summary": "Alteração de Produtos",
         "description": "Essa rota é responsavel por Alteração produto",
         "tags": ["Products"],
-        "security": [{"bearerAuth": []}],
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -157,7 +157,7 @@
           }
         },
         "responses": {
-          "400": { 
+          "400": {
             "description": "Record to update not found"
           },
           "201": {
@@ -171,7 +171,7 @@
         "summary": "Cadastro de Produtos",
         "description": "Essa rota é responsavel por cadastrar produtos",
         "tags": ["Products"],
-        "security": [{"bearerAuth": []}],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "name",
@@ -201,7 +201,7 @@
         "summary": "Deletar Produtos",
         "description": "Essa rota é responsavel por deleta produto",
         "tags": ["Products"],
-        "security": [{"bearerAuth": []}],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -211,7 +211,7 @@
           }
         ],
         "responses": {
-          "400": { 
+          "400": {
             "description": "Record to delete does not exist"
           },
           "201": {
@@ -267,7 +267,7 @@
           }
         }
       },
-      "DeleteProducts":{
+      "DeleteProducts": {
         "type": "object",
         "properties": {
           "id": {

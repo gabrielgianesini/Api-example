@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 import {
   ProductRepository,
   ProductCreateData,
@@ -6,9 +6,9 @@ import {
   ProductConsultData,
   ProductDeleteData,
   Product,
-} from "../product-repositories";
+} from '../product-repositories';
 
-const prisma = new PrismaClient({ log: ["query"] }); // { log: ["query"] } retorna no console todas as querys executadas
+const prisma = new PrismaClient({ log: ['query'] }); // { log: ["query"] } retorna no console todas as querys executadas
 
 export class PrismaProductRepository implements ProductRepository {
   async create({ name, price }: ProductCreateData) {

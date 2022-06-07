@@ -1,19 +1,19 @@
-export interface ProductCreateData{
+export interface ProductCreateData {
   name: string;
   price: number;
 }
-export interface ProductChangeData{
+export interface ProductChangeData {
   id: string;
   name: string;
   price: number;
 }
-export interface ProductConsultData{
+export interface ProductConsultData {
   name: string;
 }
-export interface ProductDeleteData{
+export interface ProductDeleteData {
   id: string;
 }
-export interface Product{
+export interface Product {
   id: string;
   name: string;
   price: number;

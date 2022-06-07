@@ -1,5 +1,5 @@
-import { app } from './src/app'
+import { app } from './src/app';
 
-const port = 3010
+const port = 3010;
 
-app.listen(port, ()=> console.log(`🚀App running on port: ${port}`))
+app.listen(port, () => console.log(`🚀App running on port: ${port}`));

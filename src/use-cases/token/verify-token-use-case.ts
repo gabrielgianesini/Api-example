@@ -1,16 +1,14 @@
-import { TokenAdapter } from "../../adapters/token-adapter";
+import { TokenAdapter } from '../../adapters/token-adapter';
 
-interface VerifyTokenUseCaseRequest{
+interface VerifyTokenUseCaseRequest {
   authToken: string;
 }
 
 export class VerifyTokenUseCase {
-  constructor(
-    private tokenAdapter: TokenAdapter
-  ){}
+  constructor(private tokenAdapter: TokenAdapter) {}
 
-  async verifyToken({authToken}: VerifyTokenUseCaseRequest){
-    const result = await this.tokenAdapter.verifyToken({authToken})
-    return result
+  async verifyToken({ authToken }: VerifyTokenUseCaseRequest) {
+    const result = await this.tokenAdapter.verifyToken({ authToken });
+    return result;
   }
 }
