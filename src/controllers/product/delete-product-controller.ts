@@ -13,7 +13,7 @@ export class DeleteProductController {
       const DeleteProduct = await deleteProductUseCase.execute({ id });
       return response.status(201).send();
     } catch (err) {
-      return response.status(400).send('Record to delete does not exist');
+      return response.status(400).send(err);
     }
   }
 }

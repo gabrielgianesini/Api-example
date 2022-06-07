@@ -13,7 +13,7 @@ export class ChangeProductController {
       await changeProductUseCase.execute({ id, name, price });
       return response.status(201).send();
     } catch (err) {
-      return response.status(400).send('Record to update not found.');
+      return response.status(400).send(err);
     }
   }
 }
